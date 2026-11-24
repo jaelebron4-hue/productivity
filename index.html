@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Productivity</title>
+  <meta name="description" content="Tâches, habitudes, objectifs et statistiques — votre tableau de bord de productivité personnel.">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Productivity">
+  <script>
+    // Applique le thème avant le premier rendu (évite le flash blanc en mode sombre)
+    (function () {
+      try {
+        var d = JSON.parse(localStorage.getItem('pt:data:v1') || '{}');
+        var t = (d.settings && d.settings.theme) || 'dark';
+        if (t === 'system') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="modal-root"></div>
+  <div id="toast-root" aria-live="polite"></div>
+  <div id="tooltip" class="tooltip" role="tooltip"></div>
+  <noscript>Cette application nécessite JavaScript.</noscript>
+</body>
+</html>
